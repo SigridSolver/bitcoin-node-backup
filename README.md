@@ -21,8 +21,11 @@ Se enfoca en:
 ## 📁 Estructura del Backup en Google Drive
 
 bitcoin/
+
 ├── blocks/ # Archivos de bloques (.dat)
+
 ├── chainstate/ # Estado actual de la blockchain
+
 └── indexes/ # Índices opcionales (txindex, addressindex, etc.)
 
 
@@ -69,3 +72,27 @@ Para verificar la integridad después de la subida completa:
 ```bash
 rclone check /mnt/bitcoin gdrive:bitcoin
 ```
+
+## 💻 Restauración en otra VM
+
+Para restaurar el nodo completo desde Google Drive:
+```bash
+rclone copy gdrive:bitcoin /mnt/bitcoin --progress
+```
+
+Mantener la misma estructura de carpetas garantiza que el nodo se inicie correctamente.
+
+## 📊 Resumen Visual del Flujo
+```bash
+VM Local                Google Drive
+----------------------------------------
+blocks    ----copy-->    bitcoin/blocks
+chainstate ----copy-->   bitcoin/chainstate
+indexes   ----copy-->    bitcoin/indexes
+```
+
+## ✅ Conclusión
+
+Este repositorio y metodología proporcionan un backup confiable y seguro de un nodo completo de Bitcoin, permitiendo restauración rápida y asegurando la integridad de los datos en la nube.
+
+
